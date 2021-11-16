@@ -13,10 +13,10 @@ messagebox.showinfo('Select Template', 'Please select the a file that will act a
 
 # open file dialog and select a file manually
 path_and_file = filedialog.askopenfilename()
-path_name = os.path.split(path_and_file)[0]
-file_name = os.path.split(path_and_file)[1]
 
 # template
+path_name = os.path.split(path_and_file)[0]
+file_name = os.path.split(path_and_file)[1]
 file_number = str(re.findall(r'\d+', file_name)[-1])
 file_number_len = len(file_number)
 file_name_stem = file_name.rsplit('.', 1)[0].rstrip(file_number)
