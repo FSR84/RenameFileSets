@@ -14,6 +14,10 @@ messagebox.showinfo('Select Template', 'Please select the a file that will act a
 # open file dialog and select a file manually
 path_and_file = filedialog.askopenfilename()
 
+if len(path_and_file) == 0:
+    messagebox.showinfo('Error', 'No file was selected.')
+    quit()
+    
 # template
 path_name = os.path.split(path_and_file)[0]
 file_name = os.path.split(path_and_file)[1]
@@ -22,7 +26,7 @@ file_number_len = len(file_number)
 file_name_stem = file_name.rsplit('.', 1)[0].rstrip(file_number)
 
 
-if messagebox.askyesno('Proceed to rename?', 'You have selected "' + file_name + '" as your template. Do you want to proceed?') == True:
+if messagebox.askyesno('Proceed?', 'You have selected "' + file_name + '" as your template. Do you want to proceed?') == True:
 
     selected_folder = Path(path_name).glob('*.*')
 
@@ -43,4 +47,3 @@ if messagebox.askyesno('Proceed to rename?', 'You have selected "' + file_name +
         print(new_file)
 
 
-#"""
