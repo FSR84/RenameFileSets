@@ -32,13 +32,12 @@ if messagebox.askyesno('Proceed?', 'You have selected "' + file_name + '" as you
 
     for file in selected_folder:
 
-        # correct cases with different numbering formats
+        # correct cases with different numbering formats (leading zeros)
         file_nr = str(re.findall(r'\d+', file.name)[-1])
         if len(file_nr) > file_number_len:
-            if file_nr[0:1] == '0':                          # only remove zero if it is the first number
-                file_nr = (file_nr)[1:len(file_nr)]
-        elif len(file_nr) < file_number_len:
-            file_nr = '0' + file_nr
+            file_nr = file_nr.lstrip('0')
+        if len(file_nr) < file_number_len:
+            file_nr = file_nr.rjust(file_number_len,'0')
 
         # rename files
         new_file = path_name + '/' + file_name_stem + file_nr + file.suffix
