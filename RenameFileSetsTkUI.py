@@ -5,10 +5,6 @@ from tkinter.constants import END
 from pathlib import Path
 import re
 
-root = tk.Tk()
-root.geometry('400x250')
-root.title('Rename File Sets')
-
 
 def get_template():
 
@@ -28,7 +24,7 @@ def get_template():
 def rename_files():
 
     if len(entry_filename.get()) == 0:
-        messagebox.showerror('Error','Template was not selected.')
+        messagebox.showerror('Error','A template was not selected.')
         return None
 
     try: 
@@ -74,25 +70,31 @@ def rename_files():
     return None
 
 
-label0 = Label(root,text="").pack()
+# Tkinter UI
+root = tk.Tk()
+root.geometry('400x250')
+root.title('Rename File Sets')
+
+
+Label(root,text="").pack()
 
 Button(root, text="Select Template", command=get_template).pack()
 
-label0 = Label(root,text="").pack()
+Label(root,text="").pack()
 
-label1 = Label(root,text="Folder for renaming:").pack()
+Label(root,text="Folder for renaming:").pack()
 
 entry_path = Entry(root, width=40)
 entry_path.pack()
 
-label0 = Label(root,text="").pack()
+Label(root,text="").pack()
 
-label2 = Label(root,text="Template:").pack()
+Label(root,text="Template:").pack()
 
 entry_filename = Entry(root, width=40)
 entry_filename.pack()
 
-label0 = Label(root,text="").pack()
+Label(root,text="").pack()
 
 Button(root, text="Rename Files", command=rename_files).pack()
 
