@@ -2,9 +2,9 @@ import os
 import tkinter as tk
 from tkinter import Button, Entry, Label, filedialog
 from tkinter import messagebox
+from tkinter.constants import END
 from pathlib import Path
 import re
-from tkinter.constants import END
 
 root = tk.Tk()
 root.geometry('400x250')
@@ -64,10 +64,10 @@ def rename_files():
 
                 try:
                     file.rename(new_file)
+                    print(new_file)
+    
                 except: # for case where there are two files with the same number in the folder
-                    print(f"There is an error with {file}.")
-
-                print(new_file)
+                    print(f"Cannot rename {file}. A file with the same number already exists.")
 
     return None
 
@@ -96,4 +96,3 @@ Button(root, text="Rename Files", command=rename_files).pack()
 
 
 root.mainloop()
-
