@@ -1,7 +1,6 @@
 import os
 import tkinter as tk
-from tkinter import Button, Entry, Label, filedialog
-from tkinter import messagebox
+from tkinter import Button, Entry, Label, filedialog, messagebox
 from tkinter.constants import END
 from pathlib import Path
 import re
@@ -32,10 +31,13 @@ def rename_files():
         messagebox.showerror('Error','Template was not selected.')
         return None
 
-    file_number = str(re.findall(r'\d+', entry_filename.get())[-1])
-    file_number_len = len(file_number)
-    file_name_stem = entry_filename.get().rsplit('.', 1)[0].rstrip(file_number)
-
+    try: 
+        file_number = str(re.findall(r'\d+', entry_filename.get())[-1])
+        file_number_len = len(file_number)
+        file_name_stem = entry_filename.get().rsplit('.', 1)[0].rstrip(file_number)
+    except:
+        messagebox.showerror('Error','The template has no number.')
+        return None
 
     if messagebox.askyesno('Proceed?', 'You have selected "' + entry_filename.get() + '" as your template. \nAll files will be renamed in the folder below: \n"' + entry_path.get() + '" \nDo you want to proceed?') == True:
 
